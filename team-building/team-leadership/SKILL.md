@@ -1,5 +1,5 @@
 ---
-name: team-leadership
+name: team-report
 description: >
   This skill should be used when the user asks about "team performance",
   "agent coaching", "accountability meeting", "1-on-1", "production goals",

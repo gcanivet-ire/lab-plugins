@@ -2,7 +2,6 @@
 description: Generate team performance reports (standup, weekly, monthly)
 argument-hint: [standup | weekly | monthly]
 ---
-
 Generate a real estate team leader report. The user may specify a report type or ask a general question about team performance.
 
 ## Determine Report Type
