@@ -1,0 +1,11 @@
+{
+  "name": "team-leader",
+  "version": "0.1.0",
+  "description": "Equip real estate team leaders with coaching frameworks, performance tracking, and reporting workflows to manage agents, leads, transactions, and recruiting",
+  "keywords": ["real-estate", "team-leader", "coaching", "production", "accountability", "recruiting"]
+},
+{
+  "name": "contact-enrichment",
+  "version": "1.0.0",
+  "description": "Enrich the latest BoldTrail CRM contact with web research, update their record, and add a real estate motivation note."
+}
