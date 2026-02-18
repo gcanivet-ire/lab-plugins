@@ -1,0 +1,75 @@
+{ 
+    "name": "real-estate-team-plugins",
+    "version": "1.0.0",
+    "description": "A collection of plugins for real estate team leaders",
+    "author": "Inside Real Estate",
+    "keywords": ["real-estate", "team-leader", "coaching", "production", "accountability", "recruiting"],
+    "plugins": [
+        {
+            "name": "lead-generation",
+            "source": "./lead-generation",
+            "description": "Build and manage marketing efforts to generate new leads"
+        },
+        {
+            "name": "lead-management",
+            "source": "./lead-management",
+            "description": "Respond to leads, qualify, enrich, segment and manage the hygiene of your contacts"
+        },
+        {
+            "name": "lead-nurture",
+            "source": "./lead-nurture",
+            "description": "Support nurturing leads through the sales process, including sending follow-up emails, making phone calls, and setting appointments, as well as providing tools to track and manage the lead's progress"
+        },
+        {
+            "name": "presentation",
+            "source": "./presentations",
+            "description": "Support moving a lead toward a signed agreement buyer or seller presentations, CMAs and drafting contracts"
+        },
+        {
+            "name": "listing-marketing",
+            "source": "./listing-management",
+            "description": "Support sellers in order to drive maximum market exposure an dinterest, including drafting, publishing, promoting, showing listings and seller reports"
+        },
+        {
+            "name": "buyer-tools",
+            "source": "./buyer-tools",
+            "description": "Support buyers with tools to find home, property alerts, pre-approvals, tours, plus neighbourhood and market reports"
+        }
+        ,
+        {
+            "name": "offer-management",
+            "source": "./offer-management",
+            "description": "Support drafting, negotiating, comparing and sending or receiving offers on behalf of buyers and seller"
+        },
+        {
+            "name": "pre-close",
+            "source": "./pre-close",
+            "description": "Support coordinating transactions towards closing, including inspections, appraisals, financing, title, and closing documents"
+        },
+        {
+            "name": "compliance",
+            "source": "./compliance",
+            "description": "Support reviewing documents for completeness and accuracy so that the transactionw will close smoothlly"
+        },
+        {
+            "name": "past-client-nurture",
+            "source": "./past-client-nurture",
+            "description": "Support closing day gifts, check-ins, asking for reviews & referrals, as well as long-term nuture and sphere of inluence marketing"
+        },
+        {
+            "name": "pipeline-management",
+            "source": "./pipeline-management",
+            "description": "Support managing the pipeline and agent performance, including tracking leads, follow-ups, appointments, showings, offers, and closings"
+        },
+        {
+            "name": "team-building",
+            "source": "./team-building",
+            "description": "Support building and managing a team with tools to manage meetings, events, trainings, emails, tasksand more"
+        },
+        {
+            "name": "recruiting",
+            "source": "./recruiting",
+            "description": "Support recruiting new agents, including sourcing, screening, interviewing, and onboarding agents"
+        }
+    ]
+}
