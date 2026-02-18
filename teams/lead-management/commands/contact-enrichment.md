@@ -1,9 +1,9 @@
 ---
-description: Enrich the latest BoldTrail CRM contact with web research and update their record
+description: Enrich the latest CRM contact with web research and update their record
 argument-hint: ""
 ---
 
-Enrich the most recently created contact in BoldTrail CRM by researching them online, updating their record with discovered details, and adding a succinct note about their real estate motivations.
+Enrich the most recently created contact in your CRM by researching them online, updating their record with discovered details, and adding a succinct note about their real estate motivations.
 
 ## Load Domain Knowledge
 

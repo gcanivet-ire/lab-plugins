@@ -3,8 +3,8 @@
 ## How tool references work
 
 Plugin files use `~~category` as a placeholder for whatever tool the user
-connects in that category. For example, `~~CRM` might mean BoldTrail,
-Follow Up Boss, kvCORE, or any other real estate CRM with an MCP server.
+connects in that category. For example, `~~CRM` might mean BoldTrail or
+Follow Up Boss any other real estate CRM with an MCP server.
 
 Plugins are tool-agnostic — they describe workflows in terms of categories
 rather than specific products.
@@ -13,7 +13,7 @@ rather than specific products.
 
 | Category | Placeholder | Included servers | Other options |
 |----------|-------------|-----------------|---------------|
-| CRM | `~~CRM` | BoldTrail | Follow Up Boss, kvCORE, Sierra Interactive, Chime, LionDesk |
+| CRM | `~~CRM` | BoldTrail | Follow Up Boss, kvCORE, Sierra Interactive, Chime, Lofty |
 | Back office | `~~back office` | BackOffice (by Inside Real Estate) | Brokermint, SkySlope, Dotloop, MoxiWorks |
 | Chat | `~~chat` | — | Slack, Microsoft Teams |
 | Calendar | `~~calendar` | — | Google Calendar, Outlook |
