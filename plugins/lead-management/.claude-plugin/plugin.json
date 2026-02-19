@@ -2,5 +2,7 @@
   "name": "lead-management",
   "version": "1.0.0",
   "description": "Tools to respond, qualify, enrich, and organize incoming leads.",
-  "author": "Inside Real Estate"
+  "author": {
+    "name": "Inside Real Estate"
+  }
 }
