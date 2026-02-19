@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "boldtrail": {
+      "type": "http",
+      "url": "https://boldtrail-mcp.insiderealestate.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${BOLDTRAIL_API_KEY}"
+      }
+    },
+    "backoffice": {
+      "type": "http",
+      "url": "https://backoffice-mcp.insiderealestate.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${BACKOFFICE_API_KEY}"
+      }
+    }
+  }
+}
