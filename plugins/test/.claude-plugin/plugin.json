@@ -1,0 +1,8 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Generate a comparative market analysis (CMA) for a target property.",
+  "author": {
+    "name": "Inside Real Estate"
+  }
+}
