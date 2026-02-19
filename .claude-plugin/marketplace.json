@@ -26,8 +26,8 @@
             "description": "Support moving a lead toward a signed agreement buyer or seller presentations, CMAs and drafting contracts"
         },
         {
-            "name": "listing-marketing",
-            "source": "./plugins/listing-marketing",
+            "name": "listing-management",
+            "source": "./plugins/listing-management",
             "description": "Support sellers in order to drive maximum market exposure an dinterest, including drafting, publishing, promoting, showing listings and seller reports"
         },
         {
