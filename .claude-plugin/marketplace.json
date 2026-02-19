@@ -73,6 +73,11 @@
             "name": "team-recruiting",
             "source": "./plugins/team-recruiting",
             "description": "Support recruiting new agents, including sourcing, screening, interviewing, and onboarding agents"
+        },
+        {
+            "name": "test",
+            "source": "./plugins/test",
+            "description": "Generate comparative market analyses (CMAs) for target properties using comps and market context"
         }
     ]
 }
