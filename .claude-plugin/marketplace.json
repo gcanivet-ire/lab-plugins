@@ -24,18 +24,13 @@
             "description": "Support nurturing leads through the sales process, including sending follow-up emails, making phone calls, and setting appointments, as well as providing tools to track and manage the lead's progress"
         },
         {
-            "name": "presentation",
-            "source": "./plugins/presentation",
-            "description": "Support moving a lead toward a signed agreement buyer or seller presentations, CMAs and drafting contracts"
-        },
-        {
             "name": "listing-management",
             "source": "./plugins/listing-management",
             "description": "Support sellers in order to drive maximum market exposure an dinterest, including drafting, publishing, promoting, showing listings and seller reports"
         },
         {
-            "name": "buyer-tools",
-            "source": "./plugins/buyer-tools",
+            "name": "client-buyer-tools",
+            "source": "./plugins/client-buyer-tools",
             "description": "Support buyers with tools to find home, property alerts, pre-approvals, tours, plus neighbourhood and market reports"
         }
         ,
@@ -45,18 +40,18 @@
             "description": "Support drafting, negotiating, comparing and sending or receiving offers on behalf of buyers and seller"
         },
         {
-            "name": "pre-close",
-            "source": "./plugins/pre-close",
+            "name": "transaction-coordination",
+            "source": "./plugins/transaction-coordination",
             "description": "Support coordinating transactions towards closing, including inspections, appraisals, financing, title, and closing documents"
         },
         {
-            "name": "compliance",
-            "source": "./plugins/compliance",
+            "name": "transaction-compliance",
+            "source": "./plugins/transaction-compliance",
             "description": "Support reviewing documents for completeness and accuracy so that the transactionw will close smoothlly"
         },
         {
-            "name": "past-client-nurture",
-            "source": "./plugins/past-client-nurture",
+            "name": "transaction-post-close",
+            "source": "./plugins/transaction-post-close",
             "description": "Support closing day gifts, check-ins, asking for reviews & referrals, as well as long-term nuture and sphere of inluence marketing"
         },
         {
