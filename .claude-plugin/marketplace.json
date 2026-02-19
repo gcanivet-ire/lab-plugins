@@ -24,8 +24,18 @@
             "description": "Support nurturing leads through the sales process, including sending follow-up emails, making phone calls, and setting appointments, as well as providing tools to track and manage the lead's progress"
         },
         {
+<<<<<<< HEAD
             "name": "listing-management",
             "source": "./plugins/listing-management",
+=======
+            "name": "client-presentation",
+            "source": "./plugins/client-presentation",
+            "description": "Support moving a lead toward a signed agreement buyer or seller presentations, CMAs and drafting contracts"
+        },
+        {
+            "name": "client-seller-tools",
+            "source": "./plugins/client-seller-tools",
+>>>>>>> ca8f7e8 (fixed manifest references)
             "description": "Support sellers in order to drive maximum market exposure an dinterest, including drafting, publishing, promoting, showing listings and seller reports"
         },
         {
@@ -35,8 +45,8 @@
         }
         ,
         {
-            "name": "offer-management",
-            "source": "./plugins/offer-management",
+            "name": "client-offer-management",
+            "source": "./plugins/client-offer-management",
             "description": "Support drafting, negotiating, comparing and sending or receiving offers on behalf of buyers and seller"
         },
         {
@@ -55,8 +65,8 @@
             "description": "Support closing day gifts, check-ins, asking for reviews & referrals, as well as long-term nuture and sphere of inluence marketing"
         },
         {
-            "name": "pipeline-management",
-            "source": "./plugins/pipeline-management",
+            "name": "team-pipeline-management",
+            "source": "./plugins/team-pipeline-management",
             "description": "Support managing the pipeline and agent performance, including tracking leads, follow-ups, appointments, showings, offers, and closings"
         },
         {
@@ -65,8 +75,8 @@
             "description": "Support building and managing a team with tools to manage meetings, events, trainings, emails, tasksand more"
         },
         {
-            "name": "recruiting",
-            "source": "./plugins/recruiting",
+            "name": "team-recruiting",
+            "source": "./plugins/team-recruiting",
             "description": "Support recruiting new agents, including sourcing, screening, interviewing, and onboarding agents"
         }
     ]
