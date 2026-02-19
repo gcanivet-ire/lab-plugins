@@ -2,5 +2,7 @@
   "name": "lead-nurture",
   "version": "1.0.0",
   "description": "Tools to follow up with leads and move them toward appointments.",
-  "author": "Inside Real Estate"
+  "author": {
+    "name": "Inside Real Estate"
+  }
 }

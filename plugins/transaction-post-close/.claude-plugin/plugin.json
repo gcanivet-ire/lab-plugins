@@ -2,5 +2,7 @@
   "name": "transaction-post-close",
   "version": "1.0.0",
   "description": "Tools for post-close follow-up, referrals, and long-term client nurture.",
-  "author": "Inside Real Estate"
+  "author": {
+    "name": "Inside Real Estate"
+  }
 }

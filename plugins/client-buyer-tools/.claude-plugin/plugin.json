@@ -2,5 +2,7 @@
   "name": "client-buyer-tools",
   "version": "1.0.0",
   "description": "Tools to support buyers with searches, alerts, pre-approvals, and tours.",
-  "author": "Inside Real Estate"
+  "author": {
+    "name": "Inside Real Estate"
+  }
 }

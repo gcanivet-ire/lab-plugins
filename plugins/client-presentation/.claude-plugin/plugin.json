@@ -2,5 +2,7 @@
   "name": "client-presentation",
   "version": "1.0.0",
   "description": "Tools to prepare buyer/seller presentations, CMAs, and agreements.",
-  "author": "Inside Real Estate"
+  "author": {
+    "name": "Inside Real Estate"
+  }
 }
