@@ -4,7 +4,7 @@
 
 This plugin uses connector placeholders (`~~category`) so the workflow stays tool-agnostic.
 
-## Connector categories for CMA
+## Connector categories (example set)
 
 | Category | Placeholder | Purpose | Common options |
 |----------|-------------|---------|----------------|
@@ -16,6 +16,5 @@ This plugin uses connector placeholders (`~~category`) so the workflow stays too
 
 ## Setup Notes
 
-- At minimum, connect `~~MLS` and `~~market stats` to generate a usable CMA.
-- Add `~~public records` for stronger subject property validation.
-- Add `~~maps` for better proximity and micro-location confidence.
+- Keep connector labels consistent with command/skill references.
+- Add only the connector categories your plugin actually needs.
