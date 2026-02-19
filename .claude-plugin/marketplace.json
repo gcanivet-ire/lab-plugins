@@ -1,9 +1,12 @@
-{ 
+{
     "name": "real-estate-team-plugins",
-    "version": "1.0.0",
-    "description": "A collection of plugins for real estate team leaders",
-    "author": "Inside Real Estate",
-    "keywords": ["real-estate", "team-leader", "coaching", "production", "accountability", "recruiting"],
+    "owner": {
+        "name": "Inside Real Estate"
+    },
+    "metadata": {
+        "description": "A collection of plugins for real estate team leaders",
+        "version": "1.0.0"
+    },
     "plugins": [
         {
             "name": "lead-generation",
