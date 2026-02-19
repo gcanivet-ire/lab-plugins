@@ -1,0 +1,6 @@
+{
+  "name": "compliance",
+  "version": "1.0.0",
+  "description": "Tools to review transaction documents for completeness and compliance.",
+  "author": "Inside Real Estate"
+}
