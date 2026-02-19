@@ -1,56 +1,55 @@
-# Team Leader Plugin
+# Lead Management Plugin
 
-A plugin for real estate team leaders to manage agent performance, track leads and transactions, run coaching conversations, and generate team reports.
+A plugin for researching and enriching CRM contacts so agents can approach each lead with better context, cleaner records, and actionable talking points.
 
 ## What it does
 
-- **`/team-leader`** command — Generate morning standup, weekly accountability, or monthly production reports by pulling data from your CRM and back office
-- **Team leadership skill** — Provides coaching frameworks (1-on-1 structures, accountability conversations), KPI benchmarks, lead management rules, transaction oversight checklists, and recruiting/onboarding guides
+- **`/contact-enrichment` command** — Finds the latest CRM contact, researches public information, updates high-confidence fields, adds tags, and writes an enrichment note.
+- **`contact-enrichment` skill** — Defines the enrichment workflow, confidence model, data-quality rules, privacy boundaries, and reporting format.
 
 ## Components
 
 | Component | Name | Purpose |
 |-----------|------|---------|
-| Command | `/team-leader` | Generate standup, weekly, or monthly team reports |
-| Skill | `team-leadership` | Real estate team management knowledge and coaching frameworks |
-| MCP Server | BoldTrail | CRM data — contacts, leads, activity, listing views |
-| MCP Server | BackOffice | Transactions, commissions, tasks, compliance |
+| Command | `/contact-enrichment` | Run end-to-end lead contact enrichment workflow |
+| Skill | `contact-enrichment` | Guide search strategy, validation, tagging, and note quality |
+| Connector category | `~~CRM` | Contact lookup, update, tags, and notes |
+| Connector category | `~~back office` | Optional transaction context for qualification workflows |
+| Connector category | `~~chat` | Optional collaboration updates |
+| Connector category | `~~calendar` | Optional appointment and timeline context |
 
 ## Setup
 
 ### Required
 
-Set these environment variables for the bundled MCP servers:
-
-- `BOLDTRAIL_API_KEY` — Your BoldTrail API key
-- `BACKOFFICE_API_KEY` — Your BackOffice API key
+- Connect a CRM in the `~~CRM` category that supports contact search/update/tag/note actions.
+- If using included integrations, set:
+  - `BOLDTRAIL_API_KEY`
 
 ### Optional
 
-Connect chat (Slack, Teams) and calendar (Google Calendar, Outlook) through Cowork's connector settings for richer standup reports.
+- `~~back office` connector for deeper transaction context.
+- `~~chat` and `~~calendar` connectors for workflow context.
+
+See `CONNECTORS.md` for connector mapping details.
 
 ## Usage
 
-### Generate a report
+Run:
 
-```
-/team-leader standup    — Morning standup prep
-/team-leader weekly     — Weekly accountability scorecard
-/team-leader monthly    — Monthly production summary
+```bash
+/contact-enrichment
 ```
 
-### Ask about team management
+The command will:
 
-The skill activates automatically when you ask about coaching, performance metrics, lead distribution, transaction oversight, or recruiting. Examples:
+1. Retrieve the latest CRM contact.
+2. Research public sources with confidence scoring.
+3. Update CRM fields conservatively (high-confidence only).
+4. Add evidence-based tags.
+5. Write a concise enrichment summary note for agent handoff.
 
-- "How should I handle a 1-on-1 with an underperforming agent?"
-- "What's a good lead-to-appointment conversion rate?"
-- "Help me build a 90-day onboarding plan for a new agent"
+## Notes
 
-## Customization
-
-This plugin is tool-agnostic. See `CONNECTORS.md` for details on swapping BoldTrail and BackOffice for other CRM and back office tools.
-
-## License
-
-MIT
+- Do not overwrite trustworthy existing CRM data unless findings are clearly newer and more accurate.
+- Keep enrichment privacy-safe and based on publicly available information only.
