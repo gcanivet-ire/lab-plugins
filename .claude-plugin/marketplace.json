@@ -9,6 +9,11 @@
     },
     "plugins": [
         {
+            "name": "brand-guidelines",
+            "source": "./plugins/brand-guidelines",
+            "description": "Brand resolution and style guidelines for CMAs, presentations, and other branded real estate deliverables"
+        },
+        {
             "name": "lead-generation-empty",
             "source": "./plugins/lead-generation",
             "description": "Build and manage marketing efforts to generate new leads"

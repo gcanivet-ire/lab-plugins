@@ -9,7 +9,7 @@ Before doing any analysis, read `${CLAUDE_PLUGIN_ROOT}/skills/cma/SKILL.md` and 
 
 ## Brand Compliance (Required)
 
-Before generating any branded asset output, resolve and confirm the target brand.
+Before generating any branded asset output, load the **brand-resolution** skill (from the brand-guidelines plugin) and follow its Brand Resolution Protocol. If the brand-guidelines plugin is not installed, ask the user for brand name and key style rules.
 
 1. Determine the brand from explicit user instruction first.
 2. If not explicit, infer from available context (project/client/team details).
