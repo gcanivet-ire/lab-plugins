@@ -42,8 +42,7 @@
             "name": "client-buyer-tools-empty",
             "source": "./plugins/client-buyer-tools",
             "description": "Support buyers with tools to find home, property alerts, pre-approvals, tours, plus neighbourhood and market reports"
-        }
-        ,
+        },
         {
             "name": "client-offer-management-empty",
             "source": "./plugins/client-offer-management",
