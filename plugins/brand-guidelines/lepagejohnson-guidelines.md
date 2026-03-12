@@ -1,9 +1,9 @@
 # Lepage Johnson Brand Guidelines (Asset-Derived)
 
 This guideline is derived from assets in:
-- `assets-lepagejohnson/Logo+EXP_blk.svg`
-- `assets-lepagejohnson/Logo+EXP_blk.png`
-- `assets-lepagejohnson/Logo+EXP_blk.pdf`
+- `reference-assets/brand-guidelines/assets-lepagejohnson/Logo+EXP_blk.svg`
+- `reference-assets/brand-guidelines/assets-lepagejohnson/Logo+EXP_blk.png`
+- `reference-assets/brand-guidelines/assets-lepagejohnson/Logo+EXP_blk.pdf`
 
 Use this as the authoritative style reference for brand id: `lepagejohnson`.
 
@@ -15,9 +15,9 @@ Use this as the authoritative style reference for brand id: `lepagejohnson`.
 
 ## Verified Brand Assets
 
-- Primary logo (vector): `assets-lepagejohnson/Logo+EXP_blk.svg`
-- Primary logo (raster): `assets-lepagejohnson/Logo+EXP_blk.png`
-- Primary logo (print): `assets-lepagejohnson/Logo+EXP_blk.pdf`
+- Primary logo (vector): `reference-assets/brand-guidelines/assets-lepagejohnson/Logo+EXP_blk.svg`
+- Primary logo (raster): `reference-assets/brand-guidelines/assets-lepagejohnson/Logo+EXP_blk.png`
+- Primary logo (print): `reference-assets/brand-guidelines/assets-lepagejohnson/Logo+EXP_blk.pdf`
 
 ## Logo Rules (Strict)
 

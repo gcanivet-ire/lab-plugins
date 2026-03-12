@@ -1,8 +1,8 @@
 # Elysian Brand Guidelines (Asset-Derived)
 
 This guideline is derived from assets in:
-- `assets-elysian/elysian-buyer-packet.pdf`
-- `assets-elysian/elysian-seller-packet.pdf`
+- `reference-assets/brand-guidelines/assets-elysian/elysian-buyer-packet.pdf`
+- `reference-assets/brand-guidelines/assets-elysian/elysian-seller-packet.pdf`
 
 Use this as the authoritative style reference for brand id: `elysian`.
 
@@ -65,7 +65,8 @@ If brand color or font selection is uncertain, ask the user before finalizing ou
 
 ## Logo and Media Usage
 
-No standalone logo asset is currently present in `assets-elysian` (packets only).
+No standalone logo asset is currently present in
+`reference-assets/brand-guidelines/assets-elysian` (packets only).
 
 Rules:
 - Do not invent or recreate a logo.
