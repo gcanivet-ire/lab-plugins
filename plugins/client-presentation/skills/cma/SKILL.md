@@ -1,6 +1,7 @@
 ---
 name: cma
 description: "Build a comparative market analysis for a target property using sold, active, and pending comparables plus local market context."
+argument-hint: "<target property address>"
 ---
 
 # CMA Skill
@@ -8,6 +9,45 @@ description: "Build a comparative market analysis for a target property using so
 Generate a practical, agent-ready comparative market analysis (CMA) for a target property.
 
 The goal is not just to output numbers. The goal is to give a pricing narrative that is defensible in a listing conversation.
+
+## Invocation
+
+When invoked as `/client-presentation:cma <target property address>`, follow this execution flow.
+
+### Brand Compliance (Required First Step)
+
+Before doing any analysis, resolve the brand:
+
+1. Determine the brand from explicit user instruction first.
+2. If not explicit, infer from available context (project/client/team details).
+3. If ambiguous, conflicting, or low-confidence, ask and pause:
+   - "Which brand should I use for this asset?"
+4. Load and follow the selected brand guideline document if available.
+5. If no guideline is available for the selected brand, ask the user for missing brand rules before finalizing.
+
+Do not finalize a branded CMA until brand selection is confirmed.
+
+### Required Inputs
+
+- Target property address
+- Property type (single-family, condo, townhouse, multi-family, land)
+- Beds, baths, square footage
+- Lot size (if applicable)
+- Year built / condition / renovations (if known)
+- Brand name/id for the deliverable (if not already clear)
+
+If key details are missing, ask concise follow-up questions before proceeding.
+
+### Output Requirements
+
+Always include:
+- **Brand Applied** — brand id/name, guideline source, unresolved brand assumptions
+- Subject summary
+- Comps table
+- Market summary
+- Price recommendation
+- Confidence and risks
+- Suggested next steps for the listing conversation
 
 ## Core Principles
 

@@ -11,6 +11,67 @@ Turn bare-bones CRM contacts into rich, actionable profiles by gathering publicl
 
 A contact record with just a name and email is nearly useless. An enriched contact with company context, professional background, real estate intent signals, and conversation starters transforms cold outreach into warm, relevant engagement. The difference in conversion rates can be dramatic.
 
+## Invocation
+
+When invoked as `/lead-management:contact-enrichment`, follow this 7-step execution flow against the BoldTrail CRM.
+
+### Step 1: Retrieve the Latest Contact
+
+Use `boldtrail_search_contacts` to find the most recently created contact. Set `per_page` to 1 and sort by most recent creation. Pull the full record using `boldtrail_get_contact` with the returned contact_id.
+
+Inventory every field — note what's populated and what's empty. You will only fill gaps, never overwrite good data unless yours is clearly more current.
+
+### Step 2: Research the Contact
+
+Run the minimum viable search set first, then advanced searches as warranted:
+
+**Minimum viable searches:**
+1. `"Full Name" city state` — disambiguate common names
+2. `"Full Name" site:linkedin.com` — professional profile
+3. Email domain search (e.g., `acmecorp.com`) — company research
+4. `"Full Name" company-name` — confirm identity and role
+5. `"Full Name" real estate buyer OR seller` — intent signals
+
+**Advanced searches (as data allows):**
+6. Phone area code research — geographic confirmation
+7. `"Full Name" site:twitter.com OR site:x.com` — social presence
+8. `"Full Name" interview OR podcast OR speaker` — talking points for executives
+9. `company-name funding OR acquisition OR news` — conversation context
+
+Apply confidence scoring: High (3+ corroborating points) → update fields; Medium (2 points) → include in notes with caveats; Low (1 or none) → flag for review, do not update fields.
+
+### Step 3: Update the BoldTrail Contact Record
+
+Use `boldtrail_update_contact` to fill in fields per the Standard field mappings table in the Core Workflow section. Only update with high-confidence data. Never overwrite existing data unless what you found is clearly more current and accurate.
+
+### Step 4: Add Tags
+
+Use `boldtrail_add_contact_tags` per the tagging framework below. Always add `enriched`. Add other tags only when genuinely supported by findings — never guess.
+
+### Step 5: Add an Enrichment Note
+
+Use `boldtrail_add_contact_note` to create a note on the contact record.
+
+- **Title**: `Lead Enrichment Summary — [Today's Date]`
+- **Details**: A succinct summary **under 500 characters** focused on decipherable real estate motivations or desires. Prioritize: buying/selling signals, property interests, investment activity, life events suggesting real estate intent (relocation, new job, growing family), timeline urgency, and 1-2 conversation starters. An agent should be able to scan this in 10 seconds.
+
+### Step 6: Run the Quality Checklist
+
+Before reporting back, verify against the Quality Checklist section below.
+
+### Step 7: Report Back
+
+Provide a clear summary:
+- **Confidence level**: High/Medium/Low
+- **Updated fields**: List each field changed and its new value
+- **Tags added**: List all tags with brief justification
+- **Key findings**: 2-3 sentences of the most important discoveries
+- **Conversation starters**: At least 2 personal talking points
+- **Gaps/caveats**: Anything not found, not verified, or conflicting
+- Confirm the enrichment note was added to the CRM
+
+---
+
 ## Core Workflow
 
 ### Step 1: Identify the Contact

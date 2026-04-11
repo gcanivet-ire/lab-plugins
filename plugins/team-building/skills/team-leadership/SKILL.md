@@ -8,6 +8,7 @@ description: >
   estate team. Also trigger when the user mentions "pipeline review",
   "deal tracker", "weekly huddle", "morning standup", or "production report".
 version: 0.1.0
+user-invocable: false
 ---
 
 # Real Estate Team Leadership
