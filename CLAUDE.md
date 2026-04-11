@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a **Claude AI Skills and Commands plugin marketplace** for real estate teams and agents, maintained by Inside Real Estate. The repository defines reusable AI workflows (skills and commands) organized by real estate business domain. Plugins are documentation-only: no build system, no runtime, no compiled output.
+This is a **Claude AI Skills plugin marketplace** for real estate teams and agents, maintained by Inside Real Estate. The repository defines reusable AI workflows (skills) organized by real estate business domain. Plugins are documentation-only: no build system, no runtime, no compiled output.
 
 **Active development branch**: `claude/add-claude-documentation-Wy6p1`
 
@@ -43,12 +43,9 @@ lab-plugins/
 plugins/<plugin-name>/
 ├── .claude-plugin/
 │   └── plugin.json               # Plugin manifest (name, version, description, author)
-├── .claude/
-│   ├── commands/
-│   │   └── <command-name>.md     # User-invocable slash commands
-│   └── skills/
-│       └── <skill-name>/
-│           └── SKILL.md          # Background knowledge/workflow definitions
+├── skills/
+│   └── <skill-name>/
+│       └── SKILL.md              # User-invocable or auto-invocable skill definition
 ├── CONNECTORS.md                 # Tool connector categories and env vars (optional)
 └── README.md                     # Plugin setup and usage guide (optional)
 ```
@@ -64,9 +61,8 @@ The root `.claude-plugin/marketplace.json` is the authoritative registry. Every 
 ```json
 {
   "name": "plugin-id",
-  "sourcePath": "plugins/plugin-id",
-  "description": "Brief purpose statement",
-  "version": "1.0.0"
+  "source": "./plugins/plugin-id",
+  "description": "Brief purpose statement"
 }
 ```
 
@@ -87,7 +83,7 @@ Every plugin directory must contain `.claude-plugin/plugin.json`:
 
 ### Plugin States
 
-- **FEATURED**: Has full implementation (commands, skills, supporting docs)
+- **FEATURED**: Has full implementation (skills, supporting docs)
 - **TEMPLATE**: Has only `.claude-plugin/plugin.json` and `.gitkeep` placeholders — ready for expansion
 
 ---
@@ -103,6 +99,8 @@ Skills are background knowledge documents that guide Claude's reasoning for a do
 name: skill-id
 description: "When to trigger this skill — used for tool selection"
 version: "1.0.0"
+argument-hint: "[optional-argument]"       # omit if no user argument needed
+user-invocable: false                      # omit (or set true) for user slash command
 ---
 
 # Skill Title
@@ -132,23 +130,9 @@ Common failure modes and recovery strategies.
 
 **Mandatory sections**: Purpose, workflow steps, quality checklist, edge cases.
 
-### Command Files (`<command-name>.md`)
-
-Commands define user-invocable slash commands (`/command-name`). Front matter + workflow:
-
-```yaml
----
-description: "Help text shown to the user"
-argument-hint: "[optional-argument]"
----
-
-Step-by-step workflow referencing tools via `~~category` placeholders
-and brand assets via `${CLAUDE_PLUGIN_ROOT}` path references.
-```
-
 ### Tool-Agnostic Placeholders
 
-All skills and commands reference tool categories — never specific product names:
+All skills reference tool categories — never specific product names:
 
 | Placeholder | Examples |
 |-------------|----------|
@@ -158,7 +142,7 @@ All skills and commands reference tool categories — never specific product nam
 | `~~chat` | Slack, Microsoft Teams |
 | `~~calendar` | Google Calendar, Outlook |
 
-Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templates) in commands and skills.
+Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templates) in skills.
 
 ---
 
@@ -169,8 +153,7 @@ Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templ
 | Plugin directories | kebab-case | `lead-management` |
 | Plugin IDs (`name` field) | kebab-case | `lead-management` |
 | Skill directories | kebab-case | `contact-enrichment` |
-| Command filenames | kebab-case | `contact-enrichment.md` |
-| Slash commands | kebab-case with `/` prefix | `/contact-enrichment` |
+| Slash commands | `/plugin-name:skill-name` | `/lead-management:contact-enrichment` |
 | Brand IDs | kebab-case | `lepagejohnson`, `elysian` |
 | Template-only plugins | append `-empty` suffix in marketplace `name` | `lead-generation-empty` |
 
@@ -185,20 +168,19 @@ Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templ
 - **Assets**: `/reference-assets/brand-guidelines/` (logos, buyer/seller packets)
 
 ### `lead-management`
-- **Command**: `/contact-enrichment` — enriches the most recent CRM contact using web research
-- **Skill**: `contact-enrichment` — defines search strategies, confidence scoring, field mapping, privacy limits
+- **Skill**: `contact-enrichment` (user-invocable as `/lead-management:contact-enrichment`) — full enrichment workflow including BoldTrail API execution, search strategies, confidence scoring, field mapping, tagging framework, and privacy limits
 - **Compliance**: TCPA, CAN-SPAM, GDPR, PIPEDA — public data only, no scraped private data
 - **Connectors**: `~~CRM` (required), `~~back office` (optional); see `CONNECTORS.md`
 - **Env vars**: `BOLDTRAIL_API_KEY`, `BACKOFFICE_API_KEY` (optional)
 
 ### `client-presentation`
-- **Command**: `/cma <target property address>` — generates a branded Comparative Market Analysis
-- **Skill**: `cma` — subject property validation, comp selection, pricing analysis, brand integration
+- **Skill**: `cma` (user-invocable as `/client-presentation:cma <target property address>`) — subject property validation, comp selection, pricing analysis, brand integration
 - **Dependency**: Always runs `brand-guidelines/brand-resolution` before producing output
 
 ### `team-building`
-- **Command**: `/team-report [standup|weekly|monthly]` — generates team performance reports
-- **Skill**: `team-leadership` — 4-part 1-on-1 structure, ACE accountability model, agent development tiers
+- **Skills**:
+  - `team-report` (user-invocable as `/team-building:team-report [standup|weekly|monthly]`) — generates standup, weekly, and monthly team performance reports
+  - `team-leadership` (auto-invocable only) — 4-part 1-on-1 structure, ACE accountability model, agent development tiers
 - **Supporting docs**: `kpi-formulas.md` (metric calculations), `report-templates.md` (report structures)
 
 ---
@@ -209,29 +191,22 @@ Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templ
 
 1. Create `plugins/<plugin-name>/` directory
 2. Add `.claude-plugin/plugin.json` with the standard manifest
-3. Add `.claude/commands/` and/or `.claude/skills/` directories as needed
-4. Populate skills and commands following document conventions above
+3. Add a `skills/` directory with subdirectories for each skill
+4. Populate skills following document conventions above
 5. Register the plugin in `.claude-plugin/marketplace.json`
 6. Remove `.gitkeep` files from populated directories
 
-### Adding a Command to an Existing Plugin
-
-1. Create `plugins/<plugin-name>/.claude/commands/<command-name>.md`
-2. Write front matter (`description`, `argument-hint` if needed)
-3. Document the step-by-step workflow using `~~tool-category` placeholders
-4. Reference required skills via `${CLAUDE_PLUGIN_ROOT}`
-
 ### Adding a Skill to an Existing Plugin
 
-1. Create `plugins/<plugin-name>/.claude/skills/<skill-name>/SKILL.md`
-2. Write front matter (`name`, `description`, `version`)
+1. Create `plugins/<plugin-name>/skills/<skill-name>/SKILL.md`
+2. Write front matter (`name`, `description`, `version`; add `argument-hint` if user-invocable; add `user-invocable: false` if background-only)
 3. Structure with mandatory sections: purpose, workflow, edge cases, quality checklist
 4. Include confidence scoring table if the skill produces scored outputs
 
 ### Upgrading a Template Plugin to Featured
 
 Template plugins have `plugin.json` only. To promote to featured:
-1. Implement skills and commands following existing featured plugins as patterns
+1. Implement skills following existing featured plugins as patterns
 2. Add `README.md` with setup and usage instructions
 3. Add `CONNECTORS.md` if the plugin requires external tool integrations
 4. Update the `name` in `marketplace.json` (remove `-empty` suffix if present)
@@ -281,4 +256,4 @@ This repository has no:
 - CI/CD pipelines
 - Linting or formatting tools
 
-All content is Markdown and JSON. Validation is manual: check that `marketplace.json` reflects the actual directory structure, and that all required sections exist in skill/command files.
+All content is Markdown and JSON. Validation is manual: check that `marketplace.json` reflects the actual directory structure, and that all required sections exist in skill files.

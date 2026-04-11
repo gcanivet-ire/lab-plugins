@@ -1,7 +1,11 @@
 ---
-description: Generate team performance reports (standup, weekly, monthly)
-argument-hint: [standup | weekly | monthly]
+name: team-report
+description: "Generate team performance reports (standup, weekly, monthly). Use when the user asks for a standup, weekly accountability, or monthly production report."
+argument-hint: "[standup | weekly | monthly]"
+version: "1.0.0"
 ---
+
+# Team Report Skill
 
 Generate a real estate team leader report. The user may specify a report type or ask a general question about team performance.
 
@@ -15,17 +19,17 @@ Based on the user's input ($ARGUMENTS), determine which report to generate:
 
 If no type is specified, ask which report the user wants.
 
-## Load Domain Knowledge
+## Load Supporting Resources
 
-Read the team-leadership skill for coaching frameworks and KPI benchmarks. Read `${CLAUDE_PLUGIN_ROOT}/skills/team-leadership/references/report-templates.md` for the report structure to follow.
+Read the `team-leadership` skill for coaching frameworks and KPI benchmarks. Read `${CLAUDE_PLUGIN_ROOT}/skills/team-leadership/references/report-templates.md` for the report structure to follow.
 
 ## Gather Data
 
 Pull data from the tools available:
 
-1. **From ~~CRM**: Search contacts for recent leads (last 24 hours for standup, last 7 days for weekly, last 30 days for monthly). Check contact activity, notes, and tags. Look at listing views and market reports per contact.
+1. **From ~~back office**: Pull transactions filtered by status (active, pending, closed). For weekly/monthly reports, include commission data and agent production. Check for overdue tasks and upcoming deadlines.
 
-2. **From ~~back office**: Pull transactions filtered by status (active, pending, closed). For weekly/monthly reports, include commission data and agent production. Check for overdue tasks and upcoming deadlines.
+2. **From ~~CRM**: Search contacts for recent leads (last 24 hours for standup, last 7 days for weekly, last 30 days for monthly). Check contact activity, notes, and tags. Look at listing views and market reports per contact.
 
 3. **From ~~chat** (if available): Check for any team channel updates or announcements relevant to the report period.
 
