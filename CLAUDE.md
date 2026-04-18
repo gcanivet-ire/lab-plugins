@@ -4,7 +4,7 @@
 
 This is a **Claude AI Skills plugin marketplace** for real estate teams and agents, maintained by Inside Real Estate. The repository defines reusable AI workflows (skills) organized by real estate business domain. Plugins are documentation-only: no build system, no runtime, no compiled output.
 
-**Active development branch**: `claude/add-claude-documentation-Wy6p1`
+**Active development branch**: `claude/add-claude-documentation-bV5Iw`
 
 ---
 
@@ -45,10 +45,14 @@ plugins/<plugin-name>/
 │   └── plugin.json               # Plugin manifest (name, version, description, author)
 ├── skills/
 │   └── <skill-name>/
-│       └── SKILL.md              # User-invocable or auto-invocable skill definition
+│       ├── SKILL.md              # User-invocable or auto-invocable skill definition
+│       └── references/           # Optional: supporting reference docs for this skill
+├── <brand-id>-guidelines.md      # Brand-specific guideline files (brand-guidelines plugin only)
 ├── CONNECTORS.md                 # Tool connector categories and env vars (optional)
 └── README.md                     # Plugin setup and usage guide (optional)
 ```
+
+**Note**: Brand guideline files (e.g. `elysian-guidelines.md`, `lepagejohnson-guidelines.md`) live at the plugin root, not inside `skills/`. Skill-specific reference documents (e.g. KPI formulas, report templates) live in a `references/` subdirectory inside the skill directory.
 
 ---
 
@@ -56,13 +60,23 @@ plugins/<plugin-name>/
 
 ### Marketplace Registry
 
-The root `.claude-plugin/marketplace.json` is the authoritative registry. Every plugin must be listed here with:
+The root `.claude-plugin/marketplace.json` is the authoritative registry. Its full structure:
 
 ```json
 {
-  "name": "plugin-id",
-  "source": "./plugins/plugin-id",
-  "description": "Brief purpose statement"
+  "name": "real-estate-team-plugins",
+  "owner": { "name": "Inside Real Estate" },
+  "metadata": {
+    "description": "A collection of plugins for real estate team leaders",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "plugin-id",
+      "source": "./plugins/plugin-id",
+      "description": "Brief purpose statement"
+    }
+  ]
 }
 ```
 
@@ -84,7 +98,7 @@ Every plugin directory must contain `.claude-plugin/plugin.json`:
 ### Plugin States
 
 - **FEATURED**: Has full implementation (skills, supporting docs)
-- **TEMPLATE**: Has only `.claude-plugin/plugin.json` and `.gitkeep` placeholders — ready for expansion
+- **TEMPLATE**: Has only `.claude-plugin/plugin.json` (and sometimes `.gitkeep`) — ready for expansion
 
 ---
 
@@ -155,6 +169,7 @@ Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templ
 | Skill directories | kebab-case | `contact-enrichment` |
 | Slash commands | `/plugin-name:skill-name` | `/lead-management:contact-enrichment` |
 | Brand IDs | kebab-case | `lepagejohnson`, `elysian` |
+| Brand guideline files | `<brand-id>-guidelines.md` at plugin root | `elysian-guidelines.md` |
 | Template-only plugins | append `-empty` suffix in marketplace `name` | `lead-generation-empty` |
 
 ---
@@ -162,26 +177,68 @@ Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templ
 ## Active Plugins Reference
 
 ### `brand-guidelines`
+
+```
+plugins/brand-guidelines/
+├── .claude-plugin/plugin.json
+├── skills/brand-resolution/SKILL.md
+├── elysian-guidelines.md            # Elysian brand rules (derived from PDF packets)
+└── lepagejohnson-guidelines.md      # Lepage Johnson brand rules (derived from logo assets)
+```
+
 - **Entry**: Skill `brand-resolution` — always invoke before producing branded deliverables
 - **Protocol**: Identify active brand → load guidelines file → verify compliance checklist
-- **Brands**: `lepagejohnson` (Lepage Johnson), `elysian` (Elysian Homes)
-- **Assets**: `/reference-assets/brand-guidelines/` (logos, buyer/seller packets)
+- **Brands**:
+  - `lepagejohnson` (Lepage Johnson) — verified logo assets, black/white only, professional tone
+  - `elysian` (Elysian Homes) — PDF-derived guidelines, warm/educational tone, Rochester market
+- **Guideline files**: at plugin root, referenced from skills as `${CLAUDE_PLUGIN_ROOT}/elysian-guidelines.md` etc.
+- **Reference assets**: `/reference-assets/brand-guidelines/assets-elysian/` (buyer/seller PDFs), `/reference-assets/brand-guidelines/assets-lepagejohnson/` (SVG/PNG/PDF logos)
 
 ### `lead-management`
-- **Skill**: `contact-enrichment` (user-invocable as `/lead-management:contact-enrichment`) — full enrichment workflow including BoldTrail API execution, search strategies, confidence scoring, field mapping, tagging framework, and privacy limits
+
+```
+plugins/lead-management/
+├── .claude-plugin/plugin.json
+├── skills/contact-enrichment/SKILL.md
+├── CONNECTORS.md
+└── README.md
+```
+
+- **Skill**: `contact-enrichment` (user-invocable as `/lead-management:contact-enrichment`) — 7-step enrichment workflow including BoldTrail API execution, search strategies, confidence scoring, field mapping, tagging framework, and privacy limits
 - **Compliance**: TCPA, CAN-SPAM, GDPR, PIPEDA — public data only, no scraped private data
 - **Connectors**: `~~CRM` (required), `~~back office` (optional); see `CONNECTORS.md`
 - **Env vars**: `BOLDTRAIL_API_KEY`, `BACKOFFICE_API_KEY` (optional)
 
 ### `client-presentation`
-- **Skill**: `cma` (user-invocable as `/client-presentation:cma <target property address>`) — subject property validation, comp selection, pricing analysis, brand integration
-- **Dependency**: Always runs `brand-guidelines/brand-resolution` before producing output
+
+```
+plugins/client-presentation/
+├── .claude-plugin/plugin.json
+└── skills/cma/SKILL.md
+```
+
+- **Skill**: `cma` (user-invocable as `/client-presentation:cma <target property address>`) — subject property validation, comp selection (A/B/C grading), pricing analysis, brand integration
+- **Dependency**: Always resolves brand via Brand Resolution Protocol before producing output
+- **Connectors**: `~~MLS`, `~~public records`, `~~market stats`, `~~maps`, `~~CRM` (optional)
 
 ### `team-building`
+
+```
+plugins/team-building/
+├── .claude-plugin/plugin.json
+└── skills/
+    ├── team-report/SKILL.md
+    └── team-leadership/
+        ├── SKILL.md
+        └── references/
+            ├── kpi-formulas.md      # Conversion, production, activity, and team health formulas
+            └── report-templates.md  # Standup, weekly, and monthly report structures
+```
+
 - **Skills**:
-  - `team-report` (user-invocable as `/team-building:team-report [standup|weekly|monthly]`) — generates standup, weekly, and monthly team performance reports
-  - `team-leadership` (auto-invocable only) — 4-part 1-on-1 structure, ACE accountability model, agent development tiers
-- **Supporting docs**: `kpi-formulas.md` (metric calculations), `report-templates.md` (report structures)
+  - `team-report` (user-invocable as `/team-building:team-report [standup|weekly|monthly]`) — generates standup, weekly, and monthly team performance reports by loading `team-leadership` skill and `references/report-templates.md`
+  - `team-leadership` (auto-invocable only) — 4-part 1-on-1 structure, ACE accountability model, agent development tiers, KPI benchmarks, lead distribution, pipeline review
+- **Reference docs**: inside `skills/team-leadership/references/` — loaded by skill files via `${CLAUDE_PLUGIN_ROOT}/skills/team-leadership/references/`
 
 ---
 
@@ -202,6 +259,12 @@ Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin-local assets (brand files, templ
 2. Write front matter (`name`, `description`, `version`; add `argument-hint` if user-invocable; add `user-invocable: false` if background-only)
 3. Structure with mandatory sections: purpose, workflow, edge cases, quality checklist
 4. Include confidence scoring table if the skill produces scored outputs
+
+### Adding Brand Guidelines to `brand-guidelines`
+
+1. Create `plugins/brand-guidelines/<brand-id>-guidelines.md` at the plugin root
+2. Add the brand to the `Available Brands` table in `skills/brand-resolution/SKILL.md`
+3. Place reference assets in `reference-assets/brand-guidelines/assets-<brand-id>/`
 
 ### Upgrading a Template Plugin to Featured
 
@@ -239,7 +302,7 @@ Template plugins have `plugin.json` only. To promote to featured:
 
 ## Git Conventions
 
-- **Active feature branch**: `claude/add-claude-documentation-Wy6p1`
+- **Active feature branch**: `claude/add-claude-documentation-bV5Iw`
 - **Main branch**: `main` (stable, reviewed changes only)
 - Commit messages are imperative, lowercase, descriptive (e.g., `add brand-guidelines plugin to marketplace`)
 - Push to `origin/<branch-name>` using `git push -u origin <branch-name>`
