@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-navy: #05205E;
+    --brand-dark: #0f0e17;
+    --brand-pink: #f00069;
+    --brand-purple: #CD00FC;
+    --brand-blue: #364C7E;
+    --brand-muted: #99A4BD;
+    --brand-gray-light: #F3F5F7;
+    --brand-gray-mid: #DADEE7;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-brand-gray-light text-gray-900 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white rounded-pill;
+    background: linear-gradient(135deg, #DC00F9 0%, #FE0007 100%);
+    transition: opacity 0.15s ease;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-brand-navy border-2 border-brand-navy rounded-pill;
+    transition: all 0.15s ease;
+  }
+  .btn-secondary:hover {
+    @apply bg-brand-navy text-white;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-brand-muted rounded-lg;
+    transition: all 0.15s ease;
+  }
+  .btn-ghost:hover {
+    @apply bg-white text-brand-navy;
+  }
+  .btn-ghost.active {
+    @apply bg-white text-brand-navy shadow-sm;
+  }
+
+  .card {
+    @apply bg-white rounded-card shadow-card;
+  }
+
+  .stat-card {
+    @apply card p-5;
+  }
+
+  .data-table {
+    @apply w-full text-sm;
+  }
+  .data-table thead tr {
+    @apply bg-brand-gray-light;
+  }
+  .data-table thead th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-brand-muted uppercase tracking-wider;
+  }
+  .data-table tbody tr {
+    @apply border-t border-brand-gray-mid;
+    transition: background 0.1s ease;
+  }
+  .data-table tbody tr:hover {
+    @apply bg-brand-gray-light cursor-pointer;
+  }
+  .data-table tbody td {
+    @apply px-4 py-3 text-sm text-gray-800;
+  }
+
+  .stage-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-pill text-xs font-semibold;
+  }
+
+  .section-title {
+    @apply text-lg font-bold text-brand-navy;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-blue-200;
+    transition: all 0.15s ease;
+  }
+  .nav-item:hover {
+    @apply bg-white/10 text-white;
+  }
+  .nav-item.active {
+    @apply text-white;
+    background: linear-gradient(135deg, rgba(220, 0, 249, 0.25) 0%, rgba(254, 0, 7, 0.25) 100%);
+    border-left: 3px solid #f00069;
+  }
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  border-radius: 10px !important;
+  border: 1px solid #DADEE7 !important;
+  box-shadow: 0 2px 20px rgba(153, 153, 153, 0.2) !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F3F5F7;
+}
+::-webkit-scrollbar-thumb {
+  background: #DADEE7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #99A4BD;
+}

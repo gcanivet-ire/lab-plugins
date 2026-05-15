@@ -1,0 +1,88 @@
+import type { Agent } from '../types'
+
+export const AGENTS: Agent[] = [
+  {
+    id: 'agent-001',
+    name: 'Sarah Mitchell',
+    email: 'sarah.mitchell@team.com',
+    phone: '(604) 555-0101',
+    tier: 'top-producer',
+    avatarInitials: 'SM',
+    avatarColor: '#f00069',
+    joinedAt: '2020-03-15',
+  },
+  {
+    id: 'agent-002',
+    name: 'James Okafor',
+    email: 'james.okafor@team.com',
+    phone: '(604) 555-0102',
+    tier: 'top-producer',
+    avatarInitials: 'JO',
+    avatarColor: '#CD00FC',
+    joinedAt: '2019-08-01',
+  },
+  {
+    id: 'agent-003',
+    name: 'Priya Sharma',
+    email: 'priya.sharma@team.com',
+    phone: '(604) 555-0103',
+    tier: 'producing',
+    avatarInitials: 'PS',
+    avatarColor: '#364C7E',
+    joinedAt: '2021-02-10',
+  },
+  {
+    id: 'agent-004',
+    name: 'Marcus Chen',
+    email: 'marcus.chen@team.com',
+    phone: '(604) 555-0104',
+    tier: 'producing',
+    avatarInitials: 'MC',
+    avatarColor: '#05205E',
+    joinedAt: '2021-09-20',
+  },
+  {
+    id: 'agent-005',
+    name: 'Aisha Thompson',
+    email: 'aisha.thompson@team.com',
+    phone: '(604) 555-0105',
+    tier: 'developing',
+    avatarInitials: 'AT',
+    avatarColor: '#818cf8',
+    joinedAt: '2022-05-01',
+  },
+  {
+    id: 'agent-006',
+    name: 'Ryan Kowalski',
+    email: 'ryan.kowalski@team.com',
+    phone: '(604) 555-0106',
+    tier: 'developing',
+    avatarInitials: 'RK',
+    avatarColor: '#f472b6',
+    joinedAt: '2022-11-14',
+  },
+  {
+    id: 'agent-007',
+    name: 'Diana Reyes',
+    email: 'diana.reyes@team.com',
+    phone: '(604) 555-0107',
+    tier: 'producing',
+    avatarInitials: 'DR',
+    avatarColor: '#34d399',
+    joinedAt: '2021-06-07',
+  },
+  {
+    id: 'agent-008',
+    name: 'Tyler Nguyen',
+    email: 'tyler.nguyen@team.com',
+    phone: '(604) 555-0108',
+    tier: 'new',
+    avatarInitials: 'TN',
+    avatarColor: '#fbbf24',
+    joinedAt: '2023-09-01',
+  },
+]
+
+export const AGENT_BY_ID = Object.fromEntries(
+  AGENTS.map((a) => [a.id, a])
+) as Record<string, Agent>
